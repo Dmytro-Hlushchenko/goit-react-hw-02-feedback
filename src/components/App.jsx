@@ -1,9 +1,25 @@
-export const App = () => {
-  return (
-    <div>
-      <h1>Please leave feedback</h1>
+import FeedButtons from "./FeedButtons/";
+import Stats from "./FeedStatistics";
+import React, { Component } from "react";
 
-      <h2>Statistics</h2>
-    </div>
-  );
-};
+
+export class App extends Component {
+
+  state = {
+    good: 0,
+    neutral: 0,
+    bad: 0
+  }
+        
+  render() {
+      return (
+        <>
+          <h1>Please leave feedback</h1>
+          <FeedButtons/>
+          <Stats />
+        </>
+      );
+        
+    };
+  };
+  
