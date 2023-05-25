@@ -2,11 +2,10 @@ import PropTypes from 'prop-types';
 
 export default function FeedButtons() {
         return (
-            
             <div>
-                <button>Good</button>
-                <button>Neutral</button>
-                <button>Bad</button>
+                <button type="button" >Good</button>
+                <button type="button">Neutral</button>
+                <button type="button">Bad</button>
             </div>
         );
 };
