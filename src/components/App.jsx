@@ -2,7 +2,7 @@ import FeedbackOptions from "./FeedbackOptions";
 import Stats from "./FeedStatistics";
 import React, { Component } from "react";
 import { Section } from "./App.styled";
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
 export class App extends Component {
 
