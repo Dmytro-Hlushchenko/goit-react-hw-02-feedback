@@ -1,8 +1,3 @@
-// Розшир функціонал застосунку таким чином, щоб в інтерфейсі відображалося більше статистики про зібрані відгуки.
-// Додай відображення загальної кількості зібраних відгуків з усіх категорій та відсоток позитивних відгуків.
-// Для цього створи допоміжні методи countTotalFeedback() і countPositiveFeedbackPercentage(), які підраховують ці значення,
-// ґрунтуючись на даних у стані(обчислювані дані).
-
 import FeedbackOptions from "./FeedbackOptions";
 import Stats from "./FeedStatistics";
 import React, { Component } from "react";
@@ -17,16 +12,12 @@ export class App extends Component {
     bad: 0
   }  
 
-  onLeaveFeedbackGood = (e) => {
-    this.setState((prevState) => ({ good: prevState.good += 1 }))
-  }
-  onLeaveFeedbackNeutral = (e) => {
-    this.setState((prevState) => ({ neutral: prevState.neutral += 1 }))
-  }
-  onLeaveFeedbackBad = (e) => {
-    this.setState((prevState) => ({ bad: prevState.bad += 1 }))
-  }
-
+    onLeaveFeedback = type => {
+    this.setState(prevState => ({
+      [type]: prevState[type] + 1,
+    }));
+    };
+  
   countTotalFeedback = () => {
     const stateValues = Object.values(this.state);
     const sum = stateValues.reduce((acc, value) => acc + value, 0); 
@@ -41,6 +32,7 @@ export class App extends Component {
           
   render() {
     const { good, neutral, bad } = this.state;
+    const options = Object.keys(this.state);
     const totalFeedback = this.countTotalFeedback();
     const countPositiveFeedbackPercentage = this.countPositiveFeedbackPercentage();
       return (
@@ -48,10 +40,8 @@ export class App extends Component {
           <Section title="Please leave feedback">
             <h1>Please leave feedback</h1>
             <FeedbackOptions 
-              options={this.state}
-              onLeaveFeedbackGood={this.onLeaveFeedbackGood}
-              onLeaveFeedbackNeutral={this.onLeaveFeedbackNeutral}
-              onLeaveFeedbackBad={this.onLeaveFeedbackBad}
+              options={options}
+              onLeaveFeedback={this.onLeaveFeedback}
             />
           </Section>
           <Section title="Statistics">
@@ -61,7 +51,7 @@ export class App extends Component {
               neutral={neutral}
               bad={bad}
               total={totalFeedback}
-              countPositiveFeedbackPercentage={countPositiveFeedbackPercentage}
+              positivePercentage={countPositiveFeedbackPercentage}
               />
           </Section>
         </>
