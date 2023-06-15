@@ -1,9 +1,9 @@
 import FeedbackOptions from "./FeedbackOptions";
 import Stats from "./FeedStatistics";
 import React, { Component } from "react";
-import { Section } from "./App.styled";
+import Section  from "./Section";
+import  Notification from "./Notification";
 // import PropTypes from 'prop-types';
-
 export class App extends Component {
 
   state = {
@@ -38,24 +38,22 @@ export class App extends Component {
       return (
         <>
           <Section title="Please leave feedback">
-            <h1>Please leave feedback</h1>
             <FeedbackOptions 
               options={options}
               onLeaveFeedback={this.onLeaveFeedback}
             />
           </Section>
           <Section title="Statistics">
-            <h2>Statistics</h2>
-            <Stats
+              {totalFeedback > 0 ? (<Stats
               good={good}
               neutral={neutral}
               bad={bad}
               total={totalFeedback}
               positivePercentage={countPositiveFeedbackPercentage}
-              />
+              />) : (
+            <Notification message="*There is no feedback*" />)}
           </Section>
         </>
       );
     };
   };
-  
