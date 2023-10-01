@@ -3,7 +3,7 @@ import Stats from "./FeedStatistics";
 import React, { Component } from "react";
 import Section  from "./Section";
 import  Notification from "./Notification";
-// import PropTypes from 'prop-types';
+
 export class App extends Component {
 
   state = {
@@ -51,7 +51,7 @@ export class App extends Component {
               total={totalFeedback}
               positivePercentage={countPositiveFeedbackPercentage}
               />) : (
-            <Notification message="*There is no feedback*" />)}
+            <Notification message="There is no feedback" />)}
           </Section>
         </>
       );
